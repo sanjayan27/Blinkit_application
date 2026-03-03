@@ -12,7 +12,6 @@ Axios.interceptors.request.use(
 
         if(accessToken){
             config.headers.Authorization = `Bearer ${accessToken}`
-            console.log('heyy sanjay its a config structure',config)
         }
         return config
     },
@@ -21,14 +20,12 @@ Axios.interceptors.request.use(
     }
 )
 //extend the life span of acccess token with the help of refresh token
-Axios.interceptors.request.use(
+Axios.interceptors.response.use(
     (response)=>{
-        console.log('sanjayan',response)
         return response 
     },
     async(error)=>{
         let originRequest = error.config
-        
         if(error.response.status === 401 && !originRequest.retry){
             console.log('sanjayannnnnn response',error)
             originRequest.retry = true

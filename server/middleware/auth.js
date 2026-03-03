@@ -11,8 +11,9 @@ const auth =async(req,res,next)=>{
                 success : false
             })
         }
-        const decode = await jwt.verify(token,process.env.SECRET_ACCESS_TOKEN);
         
+        const decode = await jwt.verify(token,process.env.SECRET_ACCESS_TOKEN);
+      
         if(!decode){
             return res.status(401).json({
                 message: 'unauthorized user',

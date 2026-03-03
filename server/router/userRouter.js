@@ -5,6 +5,7 @@ import {
   resetAccessToken,
   updateUserController,
   uploadAvatar,
+  userDetailsController,
   userLoginController,
   userLogoutController,
   userRegistration,
@@ -26,5 +27,6 @@ userRoutes.put('/forget-password',forgetPasswordController)
 userRoutes.put('/verify-otp',verifyEmailOtpController)
 userRoutes.put('/reset-password',passwordResetController)
 userRoutes.post('/refresh-token',resetAccessToken)
+userRoutes.get("/get-user-details",auth,userDetailsController)
 
 export default userRoutes;

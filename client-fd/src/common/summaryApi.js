@@ -24,6 +24,14 @@ const summaryApi = {
     refreshToken :{
         endpoint: '/api/user/refresh-token',
         method: 'post'
+    },
+    getUserDetails : {
+        endpoint: '/api/user/get-user-details',
+        method: 'get'
+    },
+    logout:{
+        endpoint: '/api/user/logout',
+        method: 'get'
     }
 }
 

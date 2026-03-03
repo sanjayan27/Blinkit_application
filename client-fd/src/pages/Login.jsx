@@ -4,6 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Axios from "../utils/Axios";
 import summaryApi from "../common/summaryApi";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "../store/userSlice";
+import fetchingUserDetails from "../utils/fetchingUserDetails";
+
 
 const Login = () => {
   const [incorrectPassword, setIncorrectPassword] = useState(false);
@@ -14,6 +18,10 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const valideData = Object.values(data).every((ev) => ev);
+  const dispatch = useDispatch();
+
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +49,8 @@ const Login = () => {
         setIncorrectPassword(false);
         localStorage.setItem('accessToken',response.data.data.accessToken)
         localStorage.setItem('refreshToken',response.data.data.refreshToken)
+        const fetchedUserDetails = await fetchingUserDetails();
+        dispatch(setUserDetails(fetchedUserDetails.data));
         setData({
           email: "",
           password: "",
@@ -56,6 +66,11 @@ const Login = () => {
       setIsLoading(false);
     }
   };
+
+
+
+
+
 
   return (
     <section className="w-full container mx-auto mt-8">
